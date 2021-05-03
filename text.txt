@@ -1,0 +1,11 @@
+Script started on 2021-04-20 22:01:43-07:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="80" LINES="24"]
+]777;notify;Command completed;exit\]777;precmd\]0;catRoman@fedora:~/Documents/scheme/simplyScheme\]7;file://fedora/home/catRoman/Documents/scheme/simplyScheme\[[0;34mcatRoman@fedora[m simplyScheme]$cd
+]777;preexec\]777;notify;Command completed;cd\]777;precmd\]0;catRoman@fedora:~\]7;file://fedora/home/catRoman\[[0;34mcatRoman@fedora[m ~]$ls
+]777;preexec\[0m[01;34mAndroid[0m                [01;34mDesktop[0m    [01;34mDownloads[0m    [01;34mMusic[0m             [01;34mPublic[0m
+[01;34mAndroidStudioProjects[0m  [01;34mDocuments[0m  [01;34mjprofiler12[0m  [01;34mNetBeansProjects[0m  [01;34mTemplates[0m
+[01;34mbin[0m                    [01;34mDoom[0m       [01;34mLightworks[0m   [01;34mPictures[0m          [01;34mVideos[0m
+]777;notify;Command completed;ls\]777;precmd\]0;catRoman@fedora:~\]7;file://fedora/home/catRoman\[[0;34mcatRoman@fedora[m ~]$cd s[K[K[K[Ksimply
+]777;preexec\]777;notify;Command completed;simply\]777;precmd\]0;catRoman@fedora:~/Documents/scheme/simplyScheme\]7;file://fedora/home/catRoman/Documents/scheme/simplyScheme\[[0;34mcatRoman@fedora[m simplyScheme]$exit
+]777;preexec\exit
+
+Script done on 2021-04-20 22:01:56-07:00 [COMMAND_EXIT_CODE="0"]
