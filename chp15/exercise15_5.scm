@@ -1,35 +1,62 @@
-;; exercise15_5.scm simply scheme
+(define (sumbase x y carry)
+    (let ((tocheck (+ (last x) (last y) carry)))
+        (cond ((and (= carry 1) (= (count x) 1)) (word 1 (- tocheck 3)))
+                ((and (< tocheck 3)(= (count x) 1) (= carry 0)) tocheck) 
+                ((and (>= tocheck 3)(= (count x) 1)) (word 1 (- tocheck 3)) ) 
+                ((>= tocheck 3)
+                    (word (sumbase (bl x) (bl y) 1) (- tocheck 3)))
+                (else 
+                    (word (sumbase (bl x) (bl y) 0) tocheck)))))
+
+(define (padzero zc num)
+    (if(= (- zc (count num)) 0)
+        num
+        (word 0 (padzero (- zc 1) num))))
+
+(define (loop1 cn tc max)
+    (let ((num (sumbase (padzero 9 cn) (padzero 9 1) 0)))
+        (if(= tc (- max 1))
+            (se num)
+            (se num (loop1 num (+ tc 1) max))
+            )))
 
 
-(define (prepend-every letter sent)
-	(if (empty? sent)
-		'()
-		(se (word letter (first sent))
-			(prepend-every letter (bf sent)))))
 
-(define (basecount prep num)
-	(if (= 322 (word prep num))
-		'!
-	(if (= prep 4)
-		(word (prepend-every prep (basecount prep num))) 
-		(if (= num 3)
-			(se (prepend-every prep num) (basecount (+ prep 1) 1)) 		
-			(se  (prepend-every prep num) (basecount prep (+ num 1)))))))
-		
+(define (loop max)
+    (loop1 0 0 max))
 
-(define (prepend? sent)
-	(= (last sent) 3))
-		
+(define (numtoletters num)
+    (cond ((= num 2) 'abc)
+            ((= num 3) 'def)
+            ((= num 4) 'ghi)
+            ((= num 5) 'jkl)
+            ((= num 6) 'mno)
+            ((= num 7) 'pqr)
+            ((= num 8) 'stu)
+            ((= num 9) 'vwx)
+            (else 'wz!)))
 
-(define (basecount2 num)
-	(if (= num 3)
-		(se num (basecount2 1))
-		(se num (basecount2 (+ num 1)))))
+(define (numtoletsent num)
+    (if (= (count num) 1)
+        (numtoletters num)
+        (se (numtoletters (first num)) 
+            (numtoletsent (bf num)))))
 
-(define (test max num)
+(define (convert num sent)
+    
+        (if (= (count num) 1) 
+            (item (+ 1 (first num))  (first sent))
+        (word (item (+ (first num) 1) (first sent)) 
+            (convert (bf num) (bf sent)))))
 
-	(if (= max num)
-		'!
-	(if (prepend? (first num))
-		(prepend-every (basecount2 num) (basecount2 num))
-		(basecount2 num)))) 
+(define (convertloop sent num)
+    
+    (if (= (count sent) 1) 
+       (bf (bf (convert  (first sent) (se '(!!!) '(***) (numtoletsent num)) )))
+        
+        (se (bf(bf(convert (first sent) (se '(!!!) '(***) (numtoletsent num)))))
+            (convertloop (bf sent) num))))
+
+(define (phone-spell num)
+    (convertloop (loop (expt 3 7)) num))
+
